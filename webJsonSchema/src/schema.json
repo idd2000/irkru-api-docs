@@ -1,0 +1,57 @@
+{
+  "$ref": "#/definitions/User",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "User": {
+      "additionalProperties": false,
+      "description": "Пользователь системы",
+      "properties": {
+        "id": {
+          "description": "Идентификатор",
+          "type": "number"
+        },
+        "name": {
+          "description": "Имя",
+          "type": "string"
+        },
+        "profile": {
+          "$ref": "#/definitions/UserProfile",
+          "description": "Профиль"
+        },
+        "roles": {
+          "description": "Роли",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "profile",
+        "roles"
+      ],
+      "type": "object"
+    },
+    "UserProfile": {
+      "additionalProperties": false,
+      "description": "Профиль пользователя",
+      "properties": {
+        "age": {
+          "description": "Возраст",
+          "type": "number"
+        },
+        "bio": {
+          "description": "Короткая биография",
+          "type": "string"
+        }
+      },
+      "required": [
+        "bio",
+        "age"
+      ],
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "$ref": "#/definitions/Main",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Category": {
+      "additionalProperties": false,
+      "description": "Рубрика",
+      "properties": {
+        "id": {
+          "description": "Идентификатор",
+          "type": "number"
+        },
+        "image": {
+          "description": "URL изображения",
+          "type": "string"
+        },
+        "is_custom": {
+          "description": "Является ли cпециальной категорией",
+          "type": "boolean"
+        },
+        "slug": {
+          "description": "Алиас",
+          "type": "string"
+        },
+        "title": {
+          "description": "Наименование рубрики",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "is_custom",
+        "title",
+        "slug",
+        "image"
+      ],
+      "type": "object"
+    },
+    "ContentType": {
+      "additionalProperties": false,
+      "properties": {
+        "app_label": {
+          "description": "Наименование приложения",
+          "type": "string"
+        },
+        "id": {
+          "description": "Идентификатор",
+          "type": "number"
+        },
+        "key": {
+          "description": "Составной ключ \"app_label.model\"",
+          "type": "string"
+        },
+        "model": {
+          "description": "Наименование модели",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "app_label",
+        "model",
+        "key"
+      ],
+      "type": "object"
+    },
+    "Image": {
+      "additionalProperties": false,
+      "properties": {
+        "height": {
+          "description": "Высота",
+          "type": "number"
+        },
+        "image": {
+          "description": "Путь к изображению",
+          "type": "string"
+        },
+        "is_main": {
+          "description": "Главное фото в галерее",
+          "type": "boolean"
+        },
+        "title": {
+          "description": "Подпись к изображению",
+          "type": "string"
+        },
+        "width": {
+          "description": "Ширина",
+          "type": "number"
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "image",
+        "title",
+        "is_main"
+      ],
+      "type": "object"
+    },
+    "Main": {
+      "additionalProperties": false,
+      "properties": {
+        "material_list": {
+          "$ref": "#/definitions/MaterialList"
+        }
+      },
+      "required": [
+        "material_list"
+      ],
+      "type": "object"
+    },
+    "MaterialList": {
+      "additionalProperties": false,
+      "description": "Материал из списка",
+      "properties": {
+        "caption": {
+          "description": "Подводка",
+          "type": "string"
+        },
+        "category": {
+          "$ref": "#/definitions/Category",
+          "description": "Рубрика"
+        },
+        "comments_cnt": {
+          "description": "Количество материалов",
+          "type": "number"
+        },
+        "content_type": {
+          "$ref": "#/definitions/ContentType",
+          "description": "Тип материала"
+        },
+        "datetime": {
+          "description": "Дата и время в формате: [YYYY]-[MM]-[DD]T[hh]-[mm]-[ss]",
+          "type": "string"
+        },
+        "id": {
+          "description": "Идентификатор",
+          "type": "number"
+        },
+        "images": {
+          "description": "Галерея изображений (для обычных материалов 1 изображение, для фоторепортижей несколько)",
+          "items": {
+            "$ref": "#/definitions/Image"
+          },
+          "type": "array"
+        },
+        "is_hidden": {
+          "description": "Скрыт?",
+          "type": "boolean"
+        },
+        "slug": {
+          "description": "Алиас",
+          "type": "string"
+        },
+        "title": {
+          "description": "Заголовок",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "datetime",
+        "slug",
+        "title",
+        "caption",
+        "category",
+        "content_type",
+        "comments_cnt",
+        "is_hidden",
+        "images"
+      ],
+      "type": "object"
+    }
+  }
+}
